@@ -409,6 +409,12 @@ namespace VRCMelonAssistant
             caller.BeginInvoke(Message, null, null, null);
         }
 
+        public static void ShowErrorMessageBox(string title, Exception ex)
+        {
+            MessageBox.Show(MainWindow.Instance, $"{title}\n{ex}", "Error",
+                MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
         /// <summary>
         /// Attempts to write the specified string to the <see cref="System.Windows.Clipboard"/>.
         /// </summary>

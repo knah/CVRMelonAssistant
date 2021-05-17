@@ -66,7 +66,7 @@ namespace VRCMelonAssistant
                         Main.Content = Intro.Instance;
                         break;
                     case "Mods":
-                        ShowModsPage();
+                        ShowModsPage().NoAwait();
                         break;
                     case "About":
                         Main.Content = About.Instance;
@@ -137,7 +137,7 @@ namespace VRCMelonAssistant
 
         private void ModsButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowModsPage();
+            ShowModsPage().NoAwait();
         }
 
         private void IntroButton_Click(object sender, RoutedEventArgs e)

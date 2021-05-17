@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
 
@@ -32,6 +33,17 @@ namespace VRCMelonAssistant
         {
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;
+        }
+
+        public static void NoAwait(this Task task)
+        {
+            task.ContinueWith(t =>
+            {
+                if (t.IsFaulted)
+                {
+                    Utils.ShowErrorMessageBox("Exception in free-floating task", t.Exception);
+                }
+            });
         }
     }
 }
