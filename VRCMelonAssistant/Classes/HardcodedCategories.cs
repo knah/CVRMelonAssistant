@@ -22,14 +22,14 @@ namespace VRCMelonAssistant
                 "BTKSAImmersiveHud", "OGTrustRanks", "ToggleMicIcon", "Friends+ home",
                 "MicSensitivity", "CloningBeGone", "ToggleFullScreen", "View Point Tweaker"
             }},
-            {"Hardware support", new() {"LeapMotionExtension", "ThumbParams", "VRCFaceTracking"}},
+            {"Hardware support", new() {"LeapMotionExtension", "ThumbParams", "VRCFaceTracking", "VRCPimaxEyeTracker"}},
             {"Dynamic bones", new() {
                 "ImmersiveTouch", "Dynamic Bones Safety", "MultiplayerDynamicBonesMod", "Multiplayer Dynamic Bones",
             }},
             {"World tweaks", new() {
                 "PostProcessing", "NearClipPlaneAdj", "RemoveChairs", "ComponentToggle", "No Grabby Hands", "AOOverride"
             }},
-            {"Fixes", new() {"Invite+ fix", "CursorLockFix", "DownloadFix",}},
+            {"Fixes", new() {"Invite+ fix", "CursorLockFix", "DownloadFix", "ProneUiFix"}},
             {"New features & Overhauls", new() {
                 "IKTweaks", "JoinNotifier", "FBT Saver", "BTKSANameplateMod", "AdvancedInvites", "VRCVideoLibrary",
                 "BTKSASelfPortrait", "OldMate", "BetterLoadingScreen", "Loading Screen Pictures", "FavCat",
@@ -44,6 +44,7 @@ namespace VRCMelonAssistant
             {"Movement", new() {
                 "TeleporterVR", "ImmobilizePlayerMod", "TrackingRotator", "OculusPlayspaceMover",
                 "ITR's Gravity Controller", "QMFreeze", "Double-Tap Runner", "Player Rotater",
+                "HeadTurn"
             }},
             {"Very Niche Mods", new() {"HWIDPatch", "No Steam. At all.", "Vertex Animation Remover", "LocalPlayerPrefs", "BTKSAGestureMod",}}
         };
