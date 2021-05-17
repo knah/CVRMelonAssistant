@@ -24,6 +24,7 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
 
         </Grid.RowDefinitions>
 
@@ -100,7 +101,7 @@
             Margin="0,5"
             FontSize="16"
             TextWrapping="Wrap">
-            <StaticResource ResourceKey="Intro:ReviewsRustySpoon" />
+            <StaticResource ResourceKey="Intro:ReportIssuesNoMods" />
         </TextBlock>
 
         <TextBlock
@@ -108,11 +109,19 @@
             Margin="0,5"
             FontSize="16"
             TextWrapping="Wrap">
+            <StaticResource ResourceKey="Intro:ReviewsRustySpoon" />
+        </TextBlock>
+
+        <TextBlock
+            Grid.Row="11"
+            Margin="0,5"
+            FontSize="16"
+            TextWrapping="Wrap">
             <StaticResource ResourceKey="Intro:WikiGuide" />
         </TextBlock>
 
         <StackPanel
-            Grid.Row="11"
+            Grid.Row="12"
             Margin="10"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"

@@ -62,6 +62,10 @@
         <Bold>not</Bold> VRChat's fault.
         <LineBreak/> They are not trying to kill mods. Most likely.
     </Span>
+    <Span x:Key="Intro:ReportIssuesNoMods">
+        If you want to report an issue with the game to VRChat Team, <Bold>make sure the issue is not caused by mods.</Bold>
+        <LineBreak />To do so, remove all mods and/or MelonLoader and check if the issue still happens.
+    </Span>
     <Span x:Key="Intro:ReviewsRustySpoon">
         If I keep seeing people complain to the devs
         <Italic>because</Italic> mods broke,
