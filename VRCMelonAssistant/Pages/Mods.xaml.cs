@@ -18,6 +18,7 @@ using System.Windows.Navigation;
 using Mono.Cecil;
 using VRCMelonAssistant.Libs;
 using static VRCMelonAssistant.Http;
+using MessageBox = System.Windows.MessageBox;
 using TextBox = System.Windows.Controls.TextBox;
 
 namespace VRCMelonAssistant.Pages
@@ -220,12 +221,37 @@ namespace VRCMelonAssistant.Pages
 
         private (string ModName, string ModVersion) ExtractModVersions(string dllPath)
         {
-            using var asmdef = AssemblyDefinition.ReadAssembly(dllPath);
-            foreach (var attr in asmdef.CustomAttributes)
-                if (attr.AttributeType.Name == "MelonInfoAttribute" || attr.AttributeType.Name == "MelonModInfoAttribute")
-                    return ((string) attr.ConstructorArguments[1].Value, (string) attr.ConstructorArguments[2].Value);
+            try
+            {
+                using var asmdef = AssemblyDefinition.ReadAssembly(dllPath);
+                foreach (var attr in asmdef.CustomAttributes)
+                    if (attr.AttributeType.Name == "MelonInfoAttribute" ||
+                        attr.AttributeType.Name == "MelonModInfoAttribute")
+                        return ((string) attr.ConstructorArguments[1].Value,
+                            (string) attr.ConstructorArguments[2].Value);
 
-            return (null, null);
+                return (null, null);
+            }
+            catch (Exception ex)
+            {
+                var result = MessageBox.Show(
+                    $"A mod in {Path.GetFileName(dllPath)} is invalid. Would you like to delete it to avoid this error in the future?",
+                    "Invalid mod", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        File.Delete(dllPath);
+                    }
+                    catch (Exception ex2)
+                    {
+                        Utils.ShowErrorMessageBox($"Unable to delete file {dllPath}", ex2);
+                    }
+                }
+
+                return (null, null);
+            }
         }
 
         public async Task PopulateModsList()
