@@ -72,7 +72,10 @@ namespace VRCMelonAssistant
         internal static async Task<Stream> DownloadFileToMemory(string link)
         {
             using var resp = await Http.HttpClient.GetAsync(link);
-            return await resp.Content.ReadAsStreamAsync();
+            var newStream = new MemoryStream();
+            await resp.Content.CopyToAsync(newStream);
+            newStream.Position = 0;
+            return newStream;
         }
 
         public static async Task InstallMod(Mod mod)
