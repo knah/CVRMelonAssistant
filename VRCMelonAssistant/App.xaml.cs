@@ -1,0 +1,199 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Reflection;
+using System.Threading.Tasks;
+using System.Windows;
+
+namespace VRCMelonAssistant
+{
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
+    public partial class App : Application
+    {
+        public static string VRChatInstallDirectory;
+        public static string VRChatInstallType;
+
+        public static bool CloseWindowOnFinish;
+        public static string Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        public static MainWindow window;
+        public static string Arguments;
+        public static bool Update = true;
+        public static bool GUI = true;
+
+        private async void Application_Startup(object sender, StartupEventArgs e)
+        {
+            // Set SecurityProtocol to prevent crash with TLS
+            ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
+
+            if (VRCMelonAssistant.Properties.Settings.Default.UpgradeRequired)
+            {
+                VRCMelonAssistant.Properties.Settings.Default.Upgrade();
+                VRCMelonAssistant.Properties.Settings.Default.UpgradeRequired = false;
+                VRCMelonAssistant.Properties.Settings.Default.Save();
+            }
+
+            Version = Version.Substring(0, Version.Length - 2);
+            Pages.Options options = Pages.Options.Instance;
+            options.InstallDirectory =
+                VRChatInstallDirectory = Utils.GetInstallDir();
+
+            Languages.LoadLanguages();
+
+            while (string.IsNullOrEmpty(VRChatInstallDirectory))
+            {
+                string title = (string)Current.FindResource("App:InstallDirDialog:Title");
+                string body = (string)Current.FindResource("App:InstallDirDialog:OkCancel");
+
+                if (System.Windows.Forms.MessageBox.Show(body, title, System.Windows.Forms.MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                {
+                    VRChatInstallDirectory = Utils.GetManualDir();
+                }
+                else
+                {
+                    Environment.Exit(0);
+                }
+            }
+
+            options.InstallType =
+                VRChatInstallType = VRCMelonAssistant.Properties.Settings.Default.StoreType;
+            options.CloseWindowOnFinish =
+                CloseWindowOnFinish = VRCMelonAssistant.Properties.Settings.Default.CloseWindowOnFinish;
+
+            await ArgumentHandler(e.Args);
+            await Init();
+        }
+
+        private async Task Init()
+        {
+            if (Update)
+            {
+                try
+                {
+                    await Task.Run(async () => await Updater.Run());
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    Utils.StartAsAdmin(Arguments, true);
+                }
+            }
+
+            if (GUI)
+            {
+                window = new MainWindow();
+                window.Show();
+            }
+            else
+            {
+                //Application.Current.Shutdown();
+            }
+        }
+
+        private async Task ArgumentHandler(string[] args)
+        {
+            Arguments = string.Join(" ", args);
+            while (args.Length > 0)
+            {
+                switch (args[0])
+                {
+                    case "--install":
+                        if (args.Length < 2 || string.IsNullOrEmpty(args[1]))
+                        {
+                            Utils.SendNotify(string.Format((string)Current.FindResource("App:InvalidArgument"), "--install"));
+                        }
+
+                        if (CloseWindowOnFinish)
+                        {
+                            await Task.Delay(5 * 1000);
+                            Current.Shutdown();
+                        }
+
+                        Update = false;
+                        GUI = false;
+                        args = Shift(args, 2);
+                        break;
+
+                    case "--no-update":
+                        Update = false;
+                        args = Shift(args);
+                        break;
+
+                    case "--language":
+                        if (args.Length < 2 || string.IsNullOrEmpty(args[1]))
+                        {
+                            Utils.SendNotify(string.Format((string)Current.FindResource("App:InvalidArgument"), "--language"));
+                        }
+                        else
+                        {
+                            if (Languages.LoadLanguage(args[1]))
+                            {
+                                VRCMelonAssistant.Properties.Settings.Default.LanguageCode = args[1];
+                                VRCMelonAssistant.Properties.Settings.Default.Save();
+                                Languages.UpdateUI(args[1]);
+                            }
+                        }
+
+                        args = Shift(args, 2);
+                        break;
+
+                    case "--register":
+                        if (args.Length < 3 || string.IsNullOrEmpty(args[1]))
+                        {
+                            Utils.SendNotify(string.Format((string)Current.FindResource("App:InvalidArgument"), "--register"));
+                        }
+
+                        Update = false;
+                        GUI = false;
+                        args = Shift(args, 3);
+                        break;
+
+                    case "--unregister":
+                        if (args.Length < 2 || string.IsNullOrEmpty(args[1]))
+                        {
+                            Utils.SendNotify(string.Format((string)Current.FindResource("App:InvalidArgument"), "--unregister"));
+                        }
+
+                        Update = false;
+                        GUI = false;
+                        args = Shift(args, 2);
+                        break;
+
+                    case "--runforever":
+                        while (true)
+                        {
+
+                        }
+
+                    default:
+                        Utils.SendNotify((string)Current.FindResource("App:UnrecognizedArgument"));
+                        args = Shift(args);
+                        break;
+                }
+            }
+        }
+
+        private static string[] Shift(string[] array, int places = 1)
+        {
+            if (places >= array.Length) return Array.Empty<string>();
+            string[] newArray = new string[array.Length - places];
+            for (int i = places; i < array.Length; i++)
+            {
+                newArray[i - places] = array[i];
+            }
+
+            return newArray;
+        }
+
+        private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            string title = (string)Current.FindResource("App:Exception");
+            string body = (string)Current.FindResource("App:UnhandledException");
+            MessageBox.Show($"{body}: {e.Exception}", title, MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            e.Handled = true;
+            Current.Shutdown();
+        }
+    }
+}

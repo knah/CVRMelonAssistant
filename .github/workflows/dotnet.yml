@@ -16,18 +16,18 @@ jobs:
     - name: Install dependencies
       run: msbuild -t:restore
     - name: Build project
-      run: msbuild ModAssistant/ModAssistant.csproj /t:Build /p:Configuration=Release
+      run: msbuild VRCMelonAssistant/VRCMelonAssistant.csproj /t:Build /p:Configuration=Release
     - name: Cleanup release
       shell: bash
       run: |
-        find "ModAssistant/bin/Release" -type f ! -name "ModAssistant.exe" -delete
-        cp "LICENSE" "ModAssistant/bin/Release/LICENSE.ModAssistant.txt"
+        find "VRCMelonAssistant/bin/Release" -type f ! -name "VRCMelonAssistant.exe" -delete
+        cp "LICENSE" "VRCMelonAssistant/bin/Release/LICENSE.VRCMelonAssistant.txt"
     - name: Upload Build
       if: startsWith(github.ref, 'refs/tags/') == false
       uses: actions/upload-artifact@v2
       with:
-        name: ModAssistant-${{ github.sha }}
-        path: ./ModAssistant/bin/Release/
+        name: VRCMelonAssistant-${{ github.sha }}
+        path: ./VRCMelonAssistant/bin/Release/
     - name: Extract Release Version
       if: startsWith(github.ref, 'refs/tags/')
       id: get_version
@@ -39,5 +39,5 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        name: Mod Assistant v${{ steps.get_version.outputs.version }}
-        files: ./ModAssistant/bin/Release/ModAssistant.exe
+        name: VRChat Melon Assistant  v${{ steps.get_version.outputs.version }}
+        files: ./VRCMelonAssistant/bin/Release/VRCMelonAssistant.exe
