@@ -153,7 +153,7 @@ namespace VRCMelonAssistant
             Properties.Settings.Default.InstallFolder = directory;
             Properties.Settings.Default.StoreType = store;
             Properties.Settings.Default.Save();
-            MainWindow.Instance.MarkModsPageForRefresh();
+            MainWindow.Instance?.MarkModsPageForRefresh();
             return directory;
         }
 
