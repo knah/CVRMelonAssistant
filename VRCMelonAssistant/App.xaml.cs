@@ -35,7 +35,6 @@ namespace VRCMelonAssistant
                 VRCMelonAssistant.Properties.Settings.Default.Save();
             }
 
-            Version = Version.Substring(0, Version.Length - 2);
             Pages.Options options = Pages.Options.Instance;
             options.InstallDirectory =
                 VRChatInstallDirectory = Utils.GetInstallDir();
