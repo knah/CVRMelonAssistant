@@ -13,8 +13,9 @@ jobs:
       uses: actions/checkout@v2
     - name: Setup msbuild
       uses: microsoft/setup-msbuild@v1.0.2
-    - name: Install dependencies
-      run: msbuild -t:restore
+    - name: Restore NuGet packages
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      run: nuget restore VRCMelonAssistant.sln
     - name: Build project
       run: msbuild VRCMelonAssistant/VRCMelonAssistant.csproj /t:Build /p:Configuration=Release
     - name: Cleanup release
