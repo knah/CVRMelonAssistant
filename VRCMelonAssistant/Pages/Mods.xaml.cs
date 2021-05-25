@@ -338,14 +338,12 @@ namespace VRCMelonAssistant.Pages
         {
             Mod mod = ((sender as System.Windows.Controls.CheckBox).Tag as Mod);
             mod.ListItem.IsSelected = true;
-            RefreshModsList();
         }
 
         private void ModCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             Mod mod = ((sender as System.Windows.Controls.CheckBox).Tag as Mod);
             mod.ListItem.IsSelected = false;
-            RefreshModsList();
         }
 
         public class Category
@@ -431,6 +429,8 @@ namespace VRCMelonAssistant.Pages
                     return "0,0,5,0";
                 }
             }
+
+            public Visibility PromotionVisibility => string.IsNullOrEmpty(PromotionText) ? Visibility.Collapsed : Visibility.Visible;
 
             public record CategoryInfo(string Name, string Description)
             {

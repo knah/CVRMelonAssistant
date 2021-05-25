@@ -48,7 +48,7 @@
             <ListView
                 Name="ModsListView"
                 Grid.Row="1"
-                Grid.Column="1"
+                Grid.Column="0"
                 SelectionChanged="ModsListView_SelectionChanged"
                 SelectionMode="Single"
                 MouseDoubleClick="ModsListView_OnMouseDoubleClick">
@@ -97,7 +97,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Margin="{Binding PromotionMargin}">
+                                            <TextBlock Margin="{Binding PromotionMargin}" Visibility="{Binding PromotionVisibility}">
                                                 <Hyperlink NavigateUri="{Binding PromotionLink, TargetNullValue=about:blank}" RequestNavigate="Hyperlink_RequestNavigate">
                                                     <Run Text="{Binding PromotionText}" />
                                                 </Hyperlink>
@@ -143,6 +143,11 @@
                         </GroupStyle.HeaderTemplate>
                     </GroupStyle>
                 </ListView.GroupStyle>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
             </ListView>
         </Grid>
     </Grid>
