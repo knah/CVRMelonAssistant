@@ -15,12 +15,14 @@ namespace VRCMelonAssistant
             }},
             {"Performance & Fidelity", new() {
                 "Core Limiter", "MirrorResolutionUnlimiter", "AvatarHider", "Runtime Graphics Settings",
-                "GamePriority", "FrameFocus", "ClearVRAM"
+                "GamePriority", "FrameFocus", "ClearVRAM", "NoPerformanceStats"
             }},
             {"Utilities & Tweaks", new() {
                 "ReloadAvatars", "KeyboardPaste", "No Outlines", "UnmuteSound", "SparkleBeGone",
                 "BTKSAImmersiveHud", "OGTrustRanks", "ToggleMicIcon", "Friends+ home",
-                "MicSensitivity", "CloningBeGone", "ToggleFullScreen", "View Point Tweaker"
+                "MicSensitivity", "CloningBeGone", "ToggleFullScreen", "View Point Tweaker",
+                "SettingsRestart", "SmallUserVolume", "TeleportCameraToYou",
+                "BetterPortalPlacement"
             }},
             {"Hardware support", new() {"LeapMotionExtension", "ThumbParams", "VRCFaceTracking", "VRCPimaxEyeTracker"}},
             {"Dynamic bones", new() {
