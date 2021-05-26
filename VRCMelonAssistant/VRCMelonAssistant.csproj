@@ -307,13 +307,13 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\ILRepack.MSBuild.Task.2.0.13\build\ILRepack.MSBuild.Task.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILRepack.MSBuild.Task.2.0.13\build\ILRepack.MSBuild.Task.props'))" />
   </Target>
-    <Target Name="ILRepack" AfterTargets="Build">
-    
+    <Target Name="ILRepack" AfterTargets="Build" Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+
         <PropertyGroup>
             <WorkingDirectory>$(MSBuildThisFileDirectory)bin\$(Configuration)\$(TargetFramework)</WorkingDirectory>
         </PropertyGroup>
-    
+
         <ILRepack OutputType="$(OutputType)" MainAssembly="$(AssemblyName).exe" OutputAssembly="$(AssemblyName).exe" InputAssemblies="$(WorkingDirectory)\Mono.Cecil.dll" WilcardInputAssemblies="true" WorkingDirectory="$(WorkingDirectory)" />
-    
+
     </Target>
 </Project>
