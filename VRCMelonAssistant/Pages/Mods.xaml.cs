@@ -209,7 +209,8 @@ namespace VRCMelonAssistant.Pages
                                 {
                                     name = modInfo.ModName,
                                     modversion = modInfo.ModVersion,
-                                    description = "",
+                                    author = modInfo.ModAuthor,
+                                    description = ""
                                 }
                             }
                         };
@@ -219,7 +220,7 @@ namespace VRCMelonAssistant.Pages
             }
         }
 
-        private (string ModName, string ModVersion) ExtractModVersions(string dllPath)
+        private (string ModName, string ModVersion, string ModAuthor) ExtractModVersions(string dllPath)
         {
             try
             {
@@ -228,9 +229,7 @@ namespace VRCMelonAssistant.Pages
                     if (attr.AttributeType.Name == "MelonInfoAttribute" ||
                         attr.AttributeType.Name == "MelonModInfoAttribute")
                         return ((string) attr.ConstructorArguments[1].Value,
-                            (string) attr.ConstructorArguments[2].Value);
-
-                return (null, null);
+                            (string) attr.ConstructorArguments[2].Value, (string) attr.ConstructorArguments[3].Value);
             }
             catch (Exception ex)
             {
@@ -249,9 +248,9 @@ namespace VRCMelonAssistant.Pages
                         Utils.ShowErrorMessageBox($"Unable to delete file {dllPath}", ex2);
                     }
                 }
-
-                return (null, null);
             }
+
+            return (null, null, null);
         }
 
         public async Task PopulateModsList()
@@ -287,6 +286,7 @@ namespace VRCMelonAssistant.Pages
                 IsEnabled = true,
                 ModName = latestVersion.name,
                 ModVersion = latestVersion.modversion,
+                ModAuthor = HardcodedCategories.FixupAuthor(latestVersion.author),
                 ModDescription = latestVersion.description.Replace("\r\n", " ").Replace("\n", " "),
                 ModInfo = mod,
                 IsInstalled = mod.installedFilePath != null,
@@ -356,6 +356,7 @@ namespace VRCMelonAssistant.Pages
         {
             public string ModName { get; set; }
             public string ModVersion { get; set; }
+            public string ModAuthor { get; set; }
             public string ModDescription { get; set; }
             public bool PreviousState { get; set; }
 

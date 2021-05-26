@@ -88,6 +88,7 @@
     <!-- Mods Page -->
     <sys:String x:Key="Mods:Title">Mods</sys:String>
     <sys:String x:Key="Mods:Header:Name">Name</sys:String>
+    <sys:String x:Key="Mods:Header:Author">Author</sys:String>
     <sys:String x:Key="Mods:Header:Installed">Installed</sys:String>
     <sys:String x:Key="Mods:Header:Latest">Latest</sys:String>
     <sys:String x:Key="Mods:Header:Description">Description</sys:String>

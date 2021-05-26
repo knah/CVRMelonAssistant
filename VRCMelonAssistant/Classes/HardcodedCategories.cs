@@ -97,5 +97,26 @@ namespace VRCMelonAssistant
         {
             return CategoryDescriptions.TryGetValue(category, out var result) ? result : "";
         }
+
+        private static List<(string Original, string Replace)> ourAuthorReplaces =
+            new()
+            {
+                ("<@!170953680718266369>", "ImTiara"),
+                ("<@!286669951987613706>", "Rafa"),
+                ("<@!168795588366696450>", "Grummus"),
+                ("<@!167335587488071682>", "KortyBoi/Lily"),
+                ("<@!127978642981650432>", "tetra"),
+                ("<@!155396491853168640>", "Dawn/arion")
+            };
+
+        public static string FixupAuthor(string authorName)
+        {
+            if (string.IsNullOrEmpty(authorName) || !authorName.Contains("@")) return authorName;
+
+            foreach (var authorReplace in ourAuthorReplaces)
+                authorName = authorName.Replace(authorReplace.Original, authorReplace.Replace);
+
+            return authorName;
+        }
     }
 }
