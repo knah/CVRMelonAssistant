@@ -1,4 +1,4 @@
-using System.Linq;
+using System;
 using System.Windows;
 using System.Windows.Documents;
 
@@ -24,7 +24,7 @@ namespace VRCMelonAssistant
             DownloadLink.Text = (string) FindResource("ModInfoWindow:DownloadLink");
             DownloadLink.Inlines.Add(new Run(" "));
             if (dlLink?.StartsWith("http") == true)
-                DownloadLink.Inlines.Add(WrapNavigator(new Hyperlink(new Run(dlLink))));
+                DownloadLink.Inlines.Add(CreateHyperlink(dlLink));
             else
                 DownloadLink.Inlines.Add(new Run(dlLink));
 
@@ -32,15 +32,16 @@ namespace VRCMelonAssistant
             SourceCodeLink.Text = (string) FindResource("ModInfoWindow:SourceCodeLink");
             SourceCodeLink.Inlines.Add(new Run(" "));
             if (srcLink?.StartsWith("http") == true)
-                SourceCodeLink.Inlines.Add(WrapNavigator(new Hyperlink(new Run(srcLink))));
+                SourceCodeLink.Inlines.Add(CreateHyperlink(srcLink));
             else
                 SourceCodeLink.Inlines.Add(new Run(srcLink));
 
             InternalIds.Text = string.Format((string) FindResource("ModInfoWindow:InternalIds"), mod._id, mod.versions[0]._version);
         }
 
-        private static Hyperlink WrapNavigator(Hyperlink link)
+        private static Hyperlink CreateHyperlink(string uri)
         {
+            var link = new Hyperlink(new Run(uri)) {NavigateUri = new Uri(uri)};
             link.RequestNavigate += HyperlinkExtensions.Hyperlink_RequestNavigate;
             return link;
         }
