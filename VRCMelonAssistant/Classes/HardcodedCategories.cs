@@ -6,8 +6,8 @@ namespace VRCMelonAssistant
     {
         private static readonly Dictionary<string, List<string>> CategoryContents = new()
         {
-            {"Safety & Security", new() {"Advanced Safety", "Finitizer", "True Shader Anticrash", "Safety-Presets"}},
-            {"Core mods and libraries", new() {"UI Expansion Kit", "ActionMenuApi", "VRCModUpdater.Loader"}},
+            {"Safety & Security", new() {"Advanced Safety", "Finitizer", "True Shader Anticrash", "Safety-Presets", "Final IK Sanity"}},
+            {"Core mods and libraries", new() {"UI Expansion Kit", "ActionMenuApi", "VRCModUpdater.Loader", "VRChatUtilityKit"}},
             {"All-in-one mods", new() {"emmVRCLoader"}},
             {"Camera mods", new() {
                 "CameraMinus", "DesktopCamera", "BetterSteadycam", "ITR's Melon Cameras", "CameraResChanger",
@@ -15,16 +15,17 @@ namespace VRCMelonAssistant
             }},
             {"Performance & Fidelity", new() {
                 "Core Limiter", "MirrorResolutionUnlimiter", "AvatarHider", "Runtime Graphics Settings",
-                "GamePriority", "FrameFocus", "ClearVRAM", "NoPerformanceStats"
+                "GamePriority", "FrameFocus", "ClearVRAM", "NoPerformanceStats", "Turbones"
             }},
             {"Utilities & Tweaks", new() {
                 "ReloadAvatars", "KeyboardPaste", "No Outlines", "UnmuteSound", "SparkleBeGone",
                 "BTKSAImmersiveHud", "OGTrustRanks", "ToggleMicIcon", "Friends+ home",
                 "MicSensitivity", "CloningBeGone", "ToggleFullScreen", "View Point Tweaker",
                 "SettingsRestart", "SmallUserVolume", "TeleportCameraToYou",
-                "BetterPortalPlacement"
+                "BetterPortalPlacement", "BetterDirections", "ChairExitController",
+                "Panic Button Rework", "SelectYourself", "Trust Color Changer", "Voice Falloff Override"
             }},
-            {"Hardware support", new() {"LeapMotionExtension", "ThumbParams", "VRCFaceTracking", "VRCPimaxEyeTracker"}},
+            {"Hardware support", new() {"LeapMotionExtension", "ThumbParams", "VRCFaceTracking", "VRCPimaxEyeTracker", "VRCBhapticsIntegration"}},
             {"Dynamic bones", new() {
                 "ImmersiveTouch", "Dynamic Bones Safety", "MultiplayerDynamicBonesMod", "Multiplayer Dynamic Bones",
             }},
@@ -36,12 +37,14 @@ namespace VRCMelonAssistant
                 "IKTweaks", "JoinNotifier", "FBT Saver", "BTKSANameplateMod", "AdvancedInvites", "VRCVideoLibrary",
                 "BTKSASelfPortrait", "OldMate", "BetterLoadingScreen", "Loading Screen Pictures", "FavCat",
                 "ActionMenuUtils", "WorldPredownload", "AskToPortal", "Headlight", "ITR's Player Tracer",
-                "InstanceHistory", "PortableMirrorMod", "VRCBonesController"
+                "InstanceHistory", "PortableMirrorMod", "VRCBonesController", "CalibrationLinesVisualizer",
+                "ITR's Collider Mod", "RememberMe", "TriggerESP"
             }},
             {"UI mods", new() {
                 "Particle and DynBone limiter settings UI", "CalibrateConfirm", "Emoji Page Buttons",
                 "UserInfoExtensions", "MLConsoleViewer", "OwO Mod", "ActiveBackground", "PlayerList", "ComfyVRMenu",
-                "DiscordMute", "MicToggle", "VRCPlusPet"
+                "DiscordMute", "MicToggle", "VRCPlusPet", "AMMusic", "Friend Notes", "GestureIndicator",
+                "NameplateStats", "PreviewScroller", "ProPlates", "QuickMenuVolume", "ToggleUIStickers"
             }},
             {"Movement", new() {
                 "TeleporterVR", "ImmobilizePlayerMod", "TrackingRotator", "OculusPlayspaceMover",
