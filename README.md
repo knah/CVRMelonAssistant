@@ -1,4 +1,4 @@
-#[Download here!](https://github.com/knah/VRCMelonAssistant/releases/latest)
+# [Download here!](https://github.com/knah/VRCMelonAssistant/releases/latest)
 
 VRChat Melon Assistant is a PC mod installer for VRChat. It uses mods published in [VRChat Modding Group Discord](https://discord.gg/rCqKSvR).  
 It's a (very stripped down) fork of [Assistant's Mod Assistant](https://github.com/Assistant/ModAssistant), a mod manager for Beat Saber.  
