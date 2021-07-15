@@ -88,9 +88,11 @@ namespace VRCMelonAssistant.Pages
             if (resp == System.Windows.Forms.DialogResult.Yes)
             {
                 var modsDir = Path.Combine(App.VRChatInstallDirectory, "Mods");
-                Directory.Delete(modsDir, true);
+                if (Directory.Exists(modsDir))
+                    Directory.Delete(modsDir, true);
                 var pluginsDir = Path.Combine(App.VRChatInstallDirectory, "Plugins");
-                Directory.Delete(pluginsDir, true);
+                if (Directory.Exists(pluginsDir))
+                    Directory.Delete(pluginsDir, true);
 
                 Directory.CreateDirectory(modsDir);
                 Directory.CreateDirectory(pluginsDir);
