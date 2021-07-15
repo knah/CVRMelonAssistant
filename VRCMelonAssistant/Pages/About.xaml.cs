@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
@@ -50,12 +51,32 @@ namespace VRCMelonAssistant.Pages
 
         private async Task HeadPat()
         {
-            PatImage.Load(await WeebCDN("pats"));
+            try
+            {
+                PatImage.Load(await WeebCDN("pats"));
+            }
+            catch (Exception ex)
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    Utils.ShowErrorMessageBox("Oops! Can't get headpats right now!", ex);
+                });
+            }
         }
 
         private async Task Hug()
         {
-            HugImage.Load(await WeebCDN("hugs"));
+            try
+            {
+                HugImage.Load(await WeebCDN("hugs"));
+            }
+            catch (Exception ex)
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    Utils.ShowErrorMessageBox("Oops! Can't get hugs right now!", ex);
+                });
+            }
         }
     }
 }
