@@ -34,7 +34,7 @@ namespace VRCMelonAssistant.Pages
         private static readonly ModListItem.CategoryInfo UncategorizedCategory = new("Uncategorized", "Mods without a category assigned");
         private static readonly ModListItem.CategoryInfo UnknownCategory = new("Unknown/Unverified", "Mods not coming from VRCMG. Potentially dangerous.");
 
-        public List<string> DefaultMods = new List<string>() { "UI Expansion Kit", "Finitizer", "VRCModUpdater.Loader" };
+        public List<string> DefaultMods = new List<string>() { "UI Expansion Kit", "Finitizer", "VRCModUpdater.Loader", "VRChatUtilityKit", "Final IK Sanity", "ActionMenuApi" };
         public Mod[] AllModsList;
         public List<Mod> UnknownMods = new List<Mod>();
         public CollectionView view;
