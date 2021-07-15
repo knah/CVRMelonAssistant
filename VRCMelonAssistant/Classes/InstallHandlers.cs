@@ -46,7 +46,7 @@ namespace VRCMelonAssistant
             {
                 MainWindow.Instance.MainText = $"{(string) App.Current.FindResource("Mods:DownloadingMelonLoader")}...";
 
-                using var installerZip = await DownloadFileToMemory("https://github.com/LavaGang/MelonLoader/releases/download/v0.3.0/MelonLoader.x64.zip");
+                using var installerZip = await DownloadFileToMemory("https://github.com/LavaGang/MelonLoader/releases/latest/download/MelonLoader.x64.zip");
                 using var zipReader = new ZipArchive(installerZip, ZipArchiveMode.Read);
 
                 MainWindow.Instance.MainText = $"{(string) App.Current.FindResource("Mods:UnpackingMelonLoader")}...";
