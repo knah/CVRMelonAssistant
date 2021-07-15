@@ -46,6 +46,7 @@ namespace VRCMelonAssistant.Libs
             new Regex(@"^(?<major>\d+)" +
                 @"(?>\.(?<minor>\d+))?" +
                 @"(?>\.(?<patch>\d+))?" +
+                @"(?>\.(?<extra>\d+))?" +
                 @"(?>\-(?<pre>[0-9A-Za-z\-\.]+))?" +
                 @"(?>\+(?<build>[0-9A-Za-z\-\.]+))?$",
 #if NETSTANDARD
@@ -82,11 +83,12 @@ namespace VRCMelonAssistant.Libs
         /// <param name="patch">The patch version.</param>
         /// <param name="prerelease">The prerelease version (e.g. "alpha").</param>
         /// <param name="build">The build metadata (e.g. "nightly.232").</param>
-        public SemVersion(int major, int minor = 0, int patch = 0, string prerelease = "", string build = "")
+        public SemVersion(int major, int minor = 0, int patch = 0, int extra = 0, string prerelease = "", string build = "")
         {
             Major = major;
             Minor = minor;
             Patch = patch;
+            Extra = extra;
 
             Prerelease = prerelease ?? "";
             Build = build ?? "";
@@ -151,10 +153,17 @@ namespace VRCMelonAssistant.Libs
             else if (strict)
                 throw new InvalidOperationException("Invalid version (no patch version given in strict mode)");
 
+            var extraMatch = match.Groups["extra"];
+            int extra = 0;
+            if (extraMatch.Success)
+                extra = int.Parse(extraMatch.Value, CultureInfo.InvariantCulture);
+
             var prerelease = match.Groups["pre"].Value;
             var build = match.Groups["build"].Value;
 
-            return new SemVersion(major, minor, patch, prerelease, build);
+
+
+            return new SemVersion(major, minor, patch, extra, prerelease, build);
         }
 
         /// <summary>
@@ -197,10 +206,18 @@ namespace VRCMelonAssistant.Libs
             }
             else if (strict) return false;
 
+            var extraMatch = match.Groups["extra"];
+            int extra = 0;
+            if (extraMatch.Success)
+            {
+                if (!int.TryParse(extraMatch.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out extra))
+                    return false;
+            }
+
             var prerelease = match.Groups["pre"].Value;
             var build = match.Groups["build"].Value;
 
-            semver = new SemVersion(major, minor, patch, prerelease, build);
+            semver = new SemVersion(major, minor, patch, extra, prerelease, build);
             return true;
         }
 
@@ -248,13 +265,14 @@ namespace VRCMelonAssistant.Libs
         /// To change only the patch version:
         /// <code>version.Change(patch: 4)</code>
         /// </example>
-        public SemVersion Change(int? major = null, int? minor = null, int? patch = null,
+        public SemVersion Change(int? major = null, int? minor = null, int? patch = null, int? extra = null,
             string prerelease = null, string build = null)
         {
             return new SemVersion(
                 major ?? Major,
                 minor ?? Minor,
                 patch ?? Patch,
+                extra ?? Extra,
                 prerelease ?? Prerelease,
                 build ?? Build);
         }
@@ -282,6 +300,11 @@ namespace VRCMelonAssistant.Libs
         /// The patch version.
         /// </value>
         public int Patch { get; }
+
+        /// <summary>
+        /// Handles the fourth number present in assembly versions
+        /// </summary>
+        public int Extra { get; }
 
         /// <summary>
         /// Gets the prerelease version.
@@ -316,6 +339,12 @@ namespace VRCMelonAssistant.Libs
             version.Append(Minor);
             version.Append('.');
             version.Append(Patch);
+            if (Extra != 0)
+            {
+                version.Append('.');
+                version.Append(Extra);
+            }
+
             if (Prerelease.Length > 0)
             {
                 version.Append('-');
@@ -407,6 +436,9 @@ namespace VRCMelonAssistant.Libs
             if (r != 0) return r;
 
             r = Patch.CompareTo(other.Patch);
+            if (r != 0) return r;
+
+            r = Extra.CompareTo(other.Extra);
             if (r != 0) return r;
 
             return CompareComponent(Prerelease, other.Prerelease, true);
