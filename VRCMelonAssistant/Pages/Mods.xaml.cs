@@ -208,7 +208,7 @@ namespace VRCMelonAssistant.Pages
                                 new Mod.ModVersion()
                                 {
                                     name = modInfo.ModName,
-                                    modversion = modInfo.ModVersion,
+                                    modVersion = modInfo.ModVersion,
                                     author = modInfo.ModAuthor,
                                     description = ""
                                 }
@@ -255,11 +255,14 @@ namespace VRCMelonAssistant.Pages
 
         public async Task PopulateModsList()
         {
-            foreach (Mod mod in AllModsList)
+            foreach (Mod mod in AllModsList.Where(x => !x.versions[0].IsBroken))
                 AddModToList(mod);
 
             foreach (var mod in UnknownMods)
                 AddModToList(mod, UnknownCategory);
+
+            foreach (Mod mod in AllModsList.Where(x => x.versions[0].IsBroken))
+                AddModToList(mod);
         }
 
         private void AddModToList(Mod mod, ModListItem.CategoryInfo categoryOverride = null)
@@ -285,7 +288,7 @@ namespace VRCMelonAssistant.Pages
                 IsSelected = preSelected,
                 IsEnabled = true,
                 ModName = latestVersion.name,
-                ModVersion = latestVersion.modversion,
+                ModVersion = latestVersion.modVersion,
                 ModAuthor = HardcodedCategories.FixupAuthor(latestVersion.author),
                 ModDescription = latestVersion.description.Replace("\r\n", " ").Replace("\n", " "),
                 ModInfo = mod,

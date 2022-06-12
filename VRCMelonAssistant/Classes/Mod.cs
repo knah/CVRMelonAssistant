@@ -7,7 +7,7 @@ namespace VRCMelonAssistant
     public class Mod
     {
         public int _id;
-        public string uploaddate;
+        public string uploadDate;
         public string category;
         public string[] aliases;
         public ModVersion[] versions;
@@ -20,20 +20,20 @@ namespace VRCMelonAssistant
         {
             public int _version;
             public string name;
-            public string modversion;
-            public string modtype;
+            public string modVersion;
+            public string modType;
             public string author;
             public string description;
-            public string downloadlink;
-            public string sourcelink;
+            public string downloadLink;
+            public string sourceLink;
             public string hash;
-            public string updatedate;
-            public string vrchatversion;
-            public string loaderversion;
+            public string updateDate;
+            public string vrchatVersion;
+            public string loaderVersion;
             public int approvalStatus;
 
             public bool IsBroken => approvalStatus == 2;
-            public bool IsPlugin => modtype.Equals("plugin", StringComparison.InvariantCultureIgnoreCase);
+            public bool IsPlugin => modType.Equals("plugin", StringComparison.InvariantCultureIgnoreCase);
         }
     }
 }

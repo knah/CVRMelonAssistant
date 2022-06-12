@@ -80,7 +80,7 @@ namespace VRCMelonAssistant
 
         public static async Task InstallMod(Mod mod)
         {
-            string downloadLink = mod.versions[0].downloadlink;
+            string downloadLink = mod.versions[0].downloadLink;
 
             if (string.IsNullOrEmpty(downloadLink))
             {
@@ -105,7 +105,7 @@ namespace VRCMelonAssistant
 
             mod.ListItem.IsInstalled = true;
             mod.installedFilePath = targetFilePath;
-            mod.ListItem.InstalledVersion = mod.versions[0].modversion;
+            mod.ListItem.InstalledVersion = mod.versions[0].modVersion;
             mod.ListItem.InstalledModInfo = mod;
         }
     }
