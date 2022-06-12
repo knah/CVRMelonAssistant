@@ -509,14 +509,14 @@ namespace VRCMelonAssistant.Pages
             if (SearchBar.Height == 0)
             {
                 SearchBar.Focus();
-                Animate(SearchBar, 0, 16, new TimeSpan(0, 0, 0, 0, 300));
-                Animate(SearchText, 0, 16, new TimeSpan(0, 0, 0, 0, 300));
+                Animate(SearchBar, 0, 20, new TimeSpan(0, 0, 0, 0, 300));
+                Animate(SearchText, 0, 20, new TimeSpan(0, 0, 0, 0, 300));
                 ModsListView.Items.Filter = new Predicate<object>(SearchFilter);
             }
             else
             {
-                Animate(SearchBar, 16, 0, new TimeSpan(0, 0, 0, 0, 300));
-                Animate(SearchText, 16, 0, new TimeSpan(0, 0, 0, 0, 300));
+                Animate(SearchBar, 20, 0, new TimeSpan(0, 0, 0, 0, 300));
+                Animate(SearchText, 20, 0, new TimeSpan(0, 0, 0, 0, 300));
                 ModsListView.Items.Filter = null;
             }
         }
