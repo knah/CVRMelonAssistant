@@ -101,7 +101,7 @@ namespace VRCMelonAssistant
                 stream.Position = 0;
 
                 targetFilePath = Path.Combine(App.VRChatInstallDirectory, mod.versions[0].IsPlugin ? "Plugins" : "Mods",
-                    mod.versions[0].IsBroken ? "Broken" : "", resp.RequestMessage.RequestUri.Segments.Last());
+                    mod.versions[0].IsBroken ? "Broken" : (mod.versions[0].IsRetired ? "Retired" : ""), resp.RequestMessage.RequestUri.Segments.Last());
 
                 Directory.CreateDirectory(Path.GetDirectoryName(targetFilePath));
 

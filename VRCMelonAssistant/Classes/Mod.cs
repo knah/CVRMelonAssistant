@@ -15,6 +15,7 @@ namespace VRCMelonAssistant
         public string installedFilePath;
         public string installedVersion;
         public bool installedInBrokenDir;
+        public bool installedInRetiredDir;
 
         public class ModVersion
         {
@@ -33,6 +34,7 @@ namespace VRCMelonAssistant
             public int approvalStatus;
 
             public bool IsBroken => approvalStatus == 2;
+            public bool IsRetired => approvalStatus == 3;
             public bool IsPlugin => modType.Equals("plugin", StringComparison.InvariantCultureIgnoreCase);
         }
     }
