@@ -25,7 +25,7 @@ namespace VRCMelonAssistant
         public class Constants
         {
             public const string VRChatAppId = "438100";
-            public const string VRCMGModsJson = "https://api.vrcmg.com/v0/mods.json";
+            public const string VRCMGModsJson = "https://api.vrcmg.com/v1/mods";
             public const string WeebCDNAPIURL = "https://pat.assistant.moe/api/v1.0/";
             public const string MD5Spacer = "                                 ";
             public static readonly char[] IllegalCharacters = new char[]

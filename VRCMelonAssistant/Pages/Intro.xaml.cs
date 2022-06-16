@@ -37,10 +37,11 @@ namespace VRCMelonAssistant.Pages
             MainWindow.Instance.ModsButton.IsEnabled = true;
 
             string text = (string) FindResource("Intro:ModsTabEnabled");
-            Utils.SendNotify(text);
             MainWindow.Instance.MainText = text;
             Properties.Settings.Default.Agreed = true;
             Properties.Settings.Default.Save();
+
+            MainWindow.Instance.ShowModsPage().NoAwait();
         }
     }
 }

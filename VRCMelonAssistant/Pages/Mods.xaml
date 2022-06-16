@@ -28,7 +28,7 @@
             <TextBlock
                 Name="SearchText"
                 Grid.Row="0"
-                Height="0"
+                Height="20"
                 Padding="5,0,0,0"
                 Panel.ZIndex="1"
                 Background="{DynamicResource BottomStatusBarBackground}"
@@ -37,7 +37,7 @@
             <TextBox
                 Name="SearchBar"
                 Grid.Row="0"
-                Height="0"
+                Height="20"
                 Margin="0,-1,0,0"
                 Padding="3,1,0,0"
                 Panel.ZIndex="2"

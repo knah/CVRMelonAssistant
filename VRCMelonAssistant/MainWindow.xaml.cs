@@ -103,7 +103,7 @@ namespace VRCMelonAssistant
             InstallButton.IsEnabled = false;
         }
 
-        private async Task ShowModsPage()
+        public async Task ShowModsPage()
         {
             void OpenModsPage()
             {

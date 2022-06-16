@@ -31,6 +31,7 @@ namespace VRCMelonAssistant.Pages
         public static Mods Instance = new Mods();
 
         private static readonly ModListItem.CategoryInfo BrokenCategory = new("Broken", "These mods were broken by a game update. They will be temporarily removed and restored once they are updated for the current game version");
+        private static readonly ModListItem.CategoryInfo RetiredCategory = new("Retired", "These mods are either no longer needed due to VRChat updates or are no longer being maintained");
         private static readonly ModListItem.CategoryInfo UncategorizedCategory = new("Uncategorized", "Mods without a category assigned");
         private static readonly ModListItem.CategoryInfo UnknownCategory = new("Unknown/Unverified", "Mods not coming from VRCMG. Potentially dangerous.");
 
@@ -138,10 +139,12 @@ namespace VRCMelonAssistant.Pages
 
             await Task.Run(() =>
             {
-                CheckInstallDir("Plugins", false);
-                CheckInstallDir("Mods", false);
-                CheckInstallDir("Plugins/Broken", true);
-                CheckInstallDir("Mods/Broken", true);
+                CheckInstallDir("Plugins");
+                CheckInstallDir("Mods");
+                CheckInstallDir("Plugins/Broken", isBrokenDir: true);
+                CheckInstallDir("Mods/Broken", isBrokenDir: true);
+                CheckInstallDir("Plugins/Retired", isRetiredDir: true);
+                CheckInstallDir("Mods/Retired", isRetiredDir: true);
             });
         }
 
@@ -168,7 +171,7 @@ namespace VRCMelonAssistant.Pages
             }
         }
 
-        private void CheckInstallDir(string directory, bool isBrokenDir)
+        private void CheckInstallDir(string directory, bool isBrokenDir = false, bool isRetiredDir = false)
         {
             if (!Directory.Exists(Path.Combine(App.VRChatInstallDirectory, directory)))
             {
@@ -193,6 +196,7 @@ namespace VRCMelonAssistant.Pages
                         mod.installedFilePath = file;
                         mod.installedVersion = modInfo.ModVersion;
                         mod.installedInBrokenDir = isBrokenDir;
+                        mod.installedInRetiredDir = isRetiredDir;
                         break;
                     }
 
@@ -203,12 +207,13 @@ namespace VRCMelonAssistant.Pages
                             installedFilePath = file,
                             installedVersion = modInfo.ModVersion,
                             installedInBrokenDir = isBrokenDir,
+                            installedInRetiredDir = isRetiredDir,
                             versions = new []
                             {
                                 new Mod.ModVersion()
                                 {
                                     name = modInfo.ModName,
-                                    modversion = modInfo.ModVersion,
+                                    modVersion = modInfo.ModVersion,
                                     author = modInfo.ModAuthor,
                                     description = ""
                                 }
@@ -255,11 +260,17 @@ namespace VRCMelonAssistant.Pages
 
         public async Task PopulateModsList()
         {
-            foreach (Mod mod in AllModsList)
+            foreach (Mod mod in AllModsList.Where(x => !x.versions[0].IsBroken && !x.versions[0].IsRetired))
                 AddModToList(mod);
 
             foreach (var mod in UnknownMods)
                 AddModToList(mod, UnknownCategory);
+
+            foreach (Mod mod in AllModsList.Where(x => x.versions[0].IsBroken))
+                AddModToList(mod);
+
+            foreach (Mod mod in AllModsList.Where(x => x.versions[0].IsRetired))
+                AddModToList(mod);
         }
 
         private void AddModToList(Mod mod, ModListItem.CategoryInfo categoryOverride = null)
@@ -285,14 +296,14 @@ namespace VRCMelonAssistant.Pages
                 IsSelected = preSelected,
                 IsEnabled = true,
                 ModName = latestVersion.name,
-                ModVersion = latestVersion.modversion,
+                ModVersion = latestVersion.modVersion,
                 ModAuthor = HardcodedCategories.FixupAuthor(latestVersion.author),
                 ModDescription = latestVersion.description.Replace("\r\n", " ").Replace("\n", " "),
                 ModInfo = mod,
                 IsInstalled = mod.installedFilePath != null,
                 InstalledVersion = mod.installedVersion,
                 InstalledModInfo = mod,
-                Category = categoryOverride ?? (latestVersion.IsBroken ? BrokenCategory : GetCategory(mod))
+                Category = categoryOverride ?? (latestVersion.IsBroken ? BrokenCategory : (latestVersion.IsRetired ? RetiredCategory : GetCategory(mod)))
             };
 
             foreach (Promotion promo in Promotions.ActivePromotions)
@@ -319,7 +330,7 @@ namespace VRCMelonAssistant.Pages
             foreach (Mod mod in AllModsList)
             {
                 // Ignore mods that are newer than installed version or up-to-date
-                if (mod.ListItem.GetVersionComparison >= 0 && mod.installedInBrokenDir == mod.versions[0].IsBroken) continue;
+                if (mod.ListItem.GetVersionComparison >= 0 && mod.installedInBrokenDir == mod.versions[0].IsBroken && mod.installedInRetiredDir == mod.versions[0].IsRetired) continue;
 
                 if (mod.ListItem.IsSelected)
                 {
@@ -506,14 +517,14 @@ namespace VRCMelonAssistant.Pages
             if (SearchBar.Height == 0)
             {
                 SearchBar.Focus();
-                Animate(SearchBar, 0, 16, new TimeSpan(0, 0, 0, 0, 300));
-                Animate(SearchText, 0, 16, new TimeSpan(0, 0, 0, 0, 300));
+                Animate(SearchBar, 0, 20, new TimeSpan(0, 0, 0, 0, 300));
+                Animate(SearchText, 0, 20, new TimeSpan(0, 0, 0, 0, 300));
                 ModsListView.Items.Filter = new Predicate<object>(SearchFilter);
             }
             else
             {
-                Animate(SearchBar, 16, 0, new TimeSpan(0, 0, 0, 0, 300));
-                Animate(SearchText, 16, 0, new TimeSpan(0, 0, 0, 0, 300));
+                Animate(SearchBar, 20, 0, new TimeSpan(0, 0, 0, 0, 300));
+                Animate(SearchText, 20, 0, new TimeSpan(0, 0, 0, 0, 300));
                 ModsListView.Items.Filter = null;
             }
         }
