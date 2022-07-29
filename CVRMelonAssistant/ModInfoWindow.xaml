@@ -1,0 +1,26 @@
+<Window x:Class="CVRMelonAssistant.ModInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:CVRMelonAssistant"
+        mc:Ignorable="d"
+        Height="450" Width="800">
+    <Grid>
+        <Rectangle Fill="{DynamicResource CVRMelonAssistantBackground}" />
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical" Margin="10">
+                <TextBlock FontSize="16" Name="ModName" />
+                <TextBlock Name="ModVersion"/>
+                <TextBlock Name="ModAuthor" />
+                <TextBlock />
+                <TextBlock Name="ModDescription" TextWrapping="Wrap" />
+                <TextBlock />
+                <TextBlock Name="SourceCodeLink" />
+                <TextBlock Name="DownloadLink" />
+                <TextBlock Name="InternalIds" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
+
