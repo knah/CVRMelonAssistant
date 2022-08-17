@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Navigation;
 using static CVRMelonAssistant.Http;
 
@@ -24,6 +25,10 @@ namespace CVRMelonAssistant.Pages
         {
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;
+        }
+
+        public void Hyperlink_RightClick(object sender, MouseButtonEventArgs e) {
+            HyperlinkExtensions.Hyperlink_RightClick(sender, e);
         }
 
         private async void HeadpatsButton_Click(object sender, RoutedEventArgs e)

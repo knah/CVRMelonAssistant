@@ -1,4 +1,5 @@
 <ResourceDictionary
+    x:Class="CVRMelonAssistant.Localisation.en"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:CVRMelonAssistant"
@@ -72,7 +73,7 @@
     </Span>
     <Span x:Key="Intro:WikiGuide">
         Feel free to join the
-        <Hyperlink local:HyperlinkExtensions.IsExternal="True" NavigateUri="https://discord.gg/xE7AwSrn">
+        <Hyperlink local:HyperlinkExtensions.IsExternal="True" NavigateUri="https://discord.gg/xE7AwSrn" MouseRightButtonUp="Hyperlink_RightClick">
             ChilloutVR Modding Group discord
         </Hyperlink> for more info, help, and support.
     </Span>
@@ -120,7 +121,7 @@
     <sys:String x:Key="About:List:Header">ChilloutVR Melon Assistant is a fork of Assistant's Mod Assistant for Beat Saber.</sys:String>
     <Span x:Key="About:SupportAssistant">
         Visit
-        <Hyperlink local:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/Assistant/ModAssistant">
+        <Hyperlink local:HyperlinkExtensions.IsExternal="True" NavigateUri="https://github.com/Assistant/ModAssistant" MouseRightButtonUp="Hyperlink_RightClick">
             Mod Assistant GitHub repo
         </Hyperlink>
         to appreciate their hard work and/or throw some money at them!

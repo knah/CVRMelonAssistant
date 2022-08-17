@@ -507,6 +507,10 @@ namespace CVRMelonAssistant.Pages
             e.Handled = true;
         }
 
+        public void Hyperlink_RightClick(object sender, MouseButtonEventArgs e) {
+            HyperlinkExtensions.Hyperlink_RightClick(sender, e);
+        }
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             RefreshColumns();
