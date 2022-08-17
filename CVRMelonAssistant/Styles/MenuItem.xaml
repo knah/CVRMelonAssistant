@@ -1,7 +1,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style TargetType="MenuItem">
         <Setter Property="Background" Value="{DynamicResource ButtonBackground}" />
-        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ButtonBackground}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Foreground" Value="{DynamicResource TextColor}" />
         <Setter Property="Template">
@@ -9,7 +9,7 @@
                 <ControlTemplate TargetType="{x:Type MenuItem}">
                     <Border
                         x:Name="templateRoot"
-                        BorderBrush="{DynamicResource ButtonOutline}"
+                        BorderBrush="Transparent"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         Padding="4"
                         Background="{TemplateBinding Background}"
