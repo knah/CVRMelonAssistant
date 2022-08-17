@@ -25,6 +25,7 @@
 
                 <!-- Load Styles needed for the Theme engine to work. -->
                 <ResourceDictionary x:Name="Button_Style" Source="Styles/Button.xaml" />
+                <ResourceDictionary x:Name="ContextMenu_Style" Source="Styles/ContextMenu.xaml" />
                 <ResourceDictionary x:Name="Label_Style" Source="Styles/Label.xaml" />
                 <ResourceDictionary x:Name="TextBlock_Style" Source="Styles/TextBlock.xaml" />
                 <ResourceDictionary x:Name="GridViewColumnHeader_Style" Source="Styles/GridViewColumnHeader.xaml" />
