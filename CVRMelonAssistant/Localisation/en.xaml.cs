@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace CVRMelonAssistant.Localisation {
     public partial class en {
-        private void HyperLink_RightClick(object sender, MouseButtonEventArgs e) {
+        private void Hyperlink_RightClick(object sender, MouseButtonEventArgs e) {
             HyperlinkExtensions.Hyperlink_RightClick(sender, e);
         }
     }
