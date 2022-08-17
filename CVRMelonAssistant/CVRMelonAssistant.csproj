@@ -123,6 +123,9 @@
       <DependentUpon>Intro.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Mod.cs" />
+    <Compile Include="Resources\ContextMenusDictionary.xaml.cs">
+      <DependentUpon>ContextMenusDictionary.xaml</DependentUpon>
+    </Compile>
     <Page Include="Localisation\en-DEBUG.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -182,6 +185,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\AppResources.xaml" />
+    <Page Include="Resources\ContextMenusDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\Icons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
