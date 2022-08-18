@@ -116,6 +116,9 @@
     <Compile Include="Classes\Updater.cs" />
     <Compile Include="Libs\semver\SemVersion.cs" />
     <Compile Include="Libs\semver\IntExtensions.cs" />
+    <Compile Include="Localisation\en.xaml.cs">
+      <DependentUpon>en.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ModInfoWindow.xaml.cs">
       <DependentUpon>ModInfoWindow.xaml</DependentUpon>
     </Compile>
