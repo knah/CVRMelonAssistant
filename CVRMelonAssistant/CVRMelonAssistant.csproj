@@ -116,6 +116,9 @@
     <Compile Include="Classes\Updater.cs" />
     <Compile Include="Libs\semver\SemVersion.cs" />
     <Compile Include="Libs\semver\IntExtensions.cs" />
+    <Compile Include="Localisation\en.xaml.cs">
+      <DependentUpon>en.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ModInfoWindow.xaml.cs">
       <DependentUpon>ModInfoWindow.xaml</DependentUpon>
     </Compile>
@@ -123,6 +126,9 @@
       <DependentUpon>Intro.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Mod.cs" />
+    <Compile Include="Resources\ContextMenusDictionary.xaml.cs">
+      <DependentUpon>ContextMenusDictionary.xaml</DependentUpon>
+    </Compile>
     <Page Include="Localisation\en-DEBUG.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -182,6 +188,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\AppResources.xaml" />
+    <Page Include="Resources\ContextMenusDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\Icons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -201,6 +211,10 @@
     <Page Include="Styles\ComboBoxItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ContextMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\GridViewColumnHeader.xaml">
       <SubType>Designer</SubType>

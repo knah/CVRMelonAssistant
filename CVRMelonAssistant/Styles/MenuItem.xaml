@@ -9,7 +9,7 @@
                 <ControlTemplate TargetType="{x:Type MenuItem}">
                     <Border
                         x:Name="templateRoot"
-                        BorderBrush="{DynamicResource ButtonOutline}"
+                        BorderBrush="Transparent"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         Padding="4"
                         Background="{TemplateBinding Background}"

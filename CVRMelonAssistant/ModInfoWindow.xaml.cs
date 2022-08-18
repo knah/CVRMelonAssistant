@@ -24,7 +24,7 @@ namespace CVRMelonAssistant
             DownloadLink.Text = (string) FindResource("ModInfoWindow:DownloadLink");
             DownloadLink.Inlines.Add(new Run(" "));
             if (dlLink?.StartsWith("http") == true)
-                DownloadLink.Inlines.Add(CreateHyperlink(dlLink));
+                DownloadLink.Inlines.Add(HyperlinkExtensions.Create(dlLink));
             else
                 DownloadLink.Inlines.Add(new Run(dlLink));
 
@@ -32,18 +32,11 @@ namespace CVRMelonAssistant
             SourceCodeLink.Text = (string) FindResource("ModInfoWindow:SourceCodeLink");
             SourceCodeLink.Inlines.Add(new Run(" "));
             if (srcLink?.StartsWith("http") == true)
-                SourceCodeLink.Inlines.Add(CreateHyperlink(srcLink));
+                SourceCodeLink.Inlines.Add(HyperlinkExtensions.Create(srcLink));
             else
                 SourceCodeLink.Inlines.Add(new Run(srcLink));
 
             InternalIds.Text = string.Format((string) FindResource("ModInfoWindow:InternalIds"), mod._id, mod.versions[0]._version);
-        }
-
-        private static Hyperlink CreateHyperlink(string uri)
-        {
-            var link = new Hyperlink(new Run(uri)) {NavigateUri = new Uri(uri)};
-            link.RequestNavigate += HyperlinkExtensions.Hyperlink_RequestNavigate;
-            return link;
         }
     }
 }

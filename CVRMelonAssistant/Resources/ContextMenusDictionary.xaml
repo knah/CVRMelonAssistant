@@ -1,0 +1,8 @@
+<ResourceDictionary x:Class="CVRMelonAssistant.Resources.ContextMenusDictionary"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ContextMenu x:Key="cmHyperlink">
+        <MenuItem Header="Open" Click="HyperLinkContextMenu_Open"/>
+        <MenuItem Header="Copy" Click="HyperLinkContextMenu_Copy"/>
+    </ContextMenu>
+</ResourceDictionary>

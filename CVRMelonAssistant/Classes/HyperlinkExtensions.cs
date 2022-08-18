@@ -1,7 +1,10 @@
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
+using System.Windows.Input;
+using CVRMelonAssistant.Resources;
 
 namespace CVRMelonAssistant
 {
@@ -44,6 +47,21 @@ namespace CVRMelonAssistant
                     Utils.ShowErrorMessageBox("Exception in free-floating task", t.Exception);
                 }
             });
+        }
+
+        public static Hyperlink Create(string uri)
+        {
+            var link = new Hyperlink(new Run(uri)) { NavigateUri = new Uri(uri) };
+            link.RequestNavigate += Hyperlink_RequestNavigate;
+            link.MouseRightButtonUp += Hyperlink_RightClick;
+            return link;
+        }
+
+        public static void Hyperlink_RightClick(object sender, MouseButtonEventArgs e)
+        {
+            var cm = ContextMenusDictionary.Instance.HyperlinkContextMenu;
+            cm.DataContext = sender;
+            cm.IsOpen = true;
         }
     }
 }
