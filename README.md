@@ -1,6 +1,6 @@
 # [Download here!](https://github.com/knah/CVRMelonAssistant/releases/latest)
 
-ChilloutVR Melon Assistant is a PC mod installer for ChilloutVR. It uses mods published in [ChilloutVR Modding Group Discord](https://discord.gg/xE7AwSrn).  
+ChilloutVR Melon Assistant is a PC mod installer for ChilloutVR. It uses mods published in [ChilloutVR Modding Group Discord](https://discord.gg/dndGPM3bxu).  
 It's a (very stripped down) fork of [Assistant's Mod Assistant](https://github.com/Assistant/ModAssistant), a mod manager for Beat Saber.  
 Modding ChilloutVR is allowed by the developers. You can read relevant [TOS portion here](https://docs.abinteractive.net/official/legal/tos/#7-modding-our-games).
 ChilloutVR Melon Assistant is not affiliated with and/or endorsed by Alpha Blend Interactive.
@@ -39,7 +39,7 @@ However, this is not a supported feature. If something doesn't work, don't compl
   You can ask mod author to submit their mod for review to be included in the list. 
   
 **I hit install but now my game won't launch, I can't click any buttons, I only see a black screen, etc**
-  Please visit the [ChilloutVR Modding Group](https://discord.gg/xE7AwSrn) `#help-and-support` channel. Check the pinned messages or ask for help and see if you can work out things out.
+  Please visit the [ChilloutVR Modding Group](https://discord.gg/dndGPM3bxu) `#help-and-support` channel. Check the pinned messages or ask for help and see if you can work out things out.
   
 ## Credits
 Lemon icon from Twitter Emoji

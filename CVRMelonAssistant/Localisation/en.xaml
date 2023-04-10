@@ -72,7 +72,7 @@
     </Span>
     <Span x:Key="Intro:WikiGuide">
         Feel free to join the
-        <Hyperlink local:HyperlinkExtensions.IsExternal="True" NavigateUri="https://discord.gg/xE7AwSrn">
+        <Hyperlink local:HyperlinkExtensions.IsExternal="True" NavigateUri="https://discord.gg/dndGPM3bxu">
             ChilloutVR Modding Group discord
         </Hyperlink> for more info, help, and support.
     </Span>
