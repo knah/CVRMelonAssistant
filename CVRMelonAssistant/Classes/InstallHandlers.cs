@@ -22,10 +22,13 @@ namespace CVRMelonAssistant
             try
             {
                 var versionDllPath = Path.Combine(App.ChilloutInstallDirectory, "version.dll");
+                var dobbyDllPath = Path.Combine(App.ChilloutInstallDirectory, "dobby.dll");
                 var melonLoaderDirPath = Path.Combine(App.ChilloutInstallDirectory, "MelonLoader");
 
                 if (File.Exists(versionDllPath))
                     File.Delete(versionDllPath);
+                if (File.Exists(dobbyDllPath))
+                    File.Delete(dobbyDllPath);
                 if (Directory.Exists(melonLoaderDirPath))
                     Directory.Delete(melonLoaderDirPath, true);
             }
@@ -54,10 +57,17 @@ namespace CVRMelonAssistant
                 foreach (var zipArchiveEntry in zipReader.Entries)
                 {
                     var targetFileName = Path.Combine(App.ChilloutInstallDirectory, zipArchiveEntry.FullName);
-                    Directory.CreateDirectory(Path.GetDirectoryName(targetFileName));
-                    using var targetFile = File.OpenWrite(targetFileName);
-                    using var entryStream = zipArchiveEntry.Open();
-                    await entryStream.CopyToAsync(targetFile);
+                    if (zipArchiveEntry.FullName.EndsWith("/"))
+                    {
+                        Directory.CreateDirectory(targetFileName);
+                    }
+                    else
+                    {
+                        Directory.CreateDirectory(Path.GetDirectoryName(targetFileName));
+                        using var targetFile = File.OpenWrite(targetFileName);
+                        using var entryStream = zipArchiveEntry.Open();
+                        await entryStream.CopyToAsync(targetFile);
+                    }
                 }
 
                 Directory.CreateDirectory(Path.Combine(App.ChilloutInstallDirectory, "Mods"));
