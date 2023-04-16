@@ -295,6 +295,7 @@ namespace CVRMelonAssistant.Pages
             {
                 IsSelected = preSelected,
                 IsEnabled = true,
+                Flag = latestVersion.flag,
                 ModName = latestVersion.name,
                 ModVersion = latestVersion.modVersion,
                 ModAuthor = HardcodedCategories.FixupAuthor(latestVersion.author),
@@ -373,6 +374,7 @@ namespace CVRMelonAssistant.Pages
 
             public bool IsEnabled { get; set; }
             public bool IsSelected { get; set; }
+            public int Flag { get; set; }
             public Mod ModInfo { get; set; }
             public CategoryInfo Category { get; set; }
 
@@ -396,6 +398,34 @@ namespace CVRMelonAssistant.Pages
                     {
                         _installedVersion = null;
                     }
+                }
+            }
+
+            public string GetFlagString
+            {
+                get
+                {
+                    switch (Flag)
+                    {
+                        case 1: return "★";
+                        case 2: return "♥";
+                        case 3: return "!!";
+                        default: return "";
+                    }
+                }
+            }
+
+            public string GetFlagColor
+            {
+                get
+                {
+                    switch(Flag)
+                    {
+                        case 1: return "#FFD700";
+                        case 2: return "#98002e";
+                        case 3: return "#FF0000";
+                        default: return "";
+                    }            
                 }
             }
 

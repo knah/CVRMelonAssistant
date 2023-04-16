@@ -51,7 +51,7 @@
                 Grid.Column="0"
                 SelectionChanged="ModsListView_SelectionChanged"
                 SelectionMode="Single"
-                MouseDoubleClick="ModsListView_OnMouseDoubleClick">
+                MouseDoubleClick="ModsListView_OnMouseDoubleClick" Margin="0,0,0,20">
                 <ListView.View>
                     <GridView>
                         <GridView.Columns>
@@ -79,6 +79,21 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
+
+                            <GridViewColumn>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Text="{Binding GetFlagString}"
+                                            TextAlignment="Center"
+                                            Width="20"
+                                            Foreground="{Binding GetFlagColor}"
+                                            FontSize="22"
+                                            />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
                             <GridViewColumn DisplayMemberBinding="{Binding ModName}" Header="{DynamicResource Mods:Header:Name}" />
                             <GridViewColumn Header="{DynamicResource Mods:Header:Author}">
                                 <GridViewColumn.CellTemplate>
@@ -159,6 +174,17 @@
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
+
+            <TextBlock
+                Name="SymbolsKey"
+                VerticalAlignment="Bottom"
+                Grid.Row="5"
+                Height="20"
+                Padding="10,0,0,0"
+                Background="{DynamicResource BottomStatusBarBackground}"
+                Foreground="{DynamicResource TextColor}"
+                Text="{DynamicResource Mods:SymKey}"/>
+
         </Grid>
     </Grid>
 </Page>

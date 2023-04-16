@@ -32,6 +32,7 @@ namespace CVRMelonAssistant
             public string ChilloutVRVersion;
             public string loaderVersion;
             public int approvalStatus;
+            public int flag;
 
             public bool IsBroken => approvalStatus == 2;
             public bool IsRetired => approvalStatus == 3;
